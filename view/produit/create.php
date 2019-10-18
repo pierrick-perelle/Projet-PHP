@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form method="get" action="routeur.php">
+<form method="get" action="index.php">
     <fieldset>
         <legend>Mon formulaire :</legend>
         <p>

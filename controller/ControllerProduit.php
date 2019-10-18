@@ -23,13 +23,12 @@ Class ControllerProduit{
 
     public static function created(){
 
-        $idprod = $_GET['idProduit'];
-        $lib = $_GET['libelle'];
-        $prixprod = $_GET['prixProduit'];
+        $lib = $_GET['lib'];
+        $prixprod = $_GET['prixprod'];
         $stock = $_GET['stock'];
         $desc = $_GET['desc'];
 
-        $prod = new ModelProduit($idprod,$lib,$prixprod,$stock,$desc);
+        $prod = new ModelProduit($lib,$prixprod,$stock,$desc);
         $v = $prod->save();
         if($v==false){
             echo 'erreur duplication';

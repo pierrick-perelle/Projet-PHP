@@ -49,12 +49,11 @@ Class ModelProduit{
         $this->description = $desc2;
     }
     
-    public function __construct($idp = NULL, $lib = NULL, $pp = NULL, $s = NULL,$desc = NULL) {
-        if (!is_null($idp) && !is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc)) {
+    public function __construct( $lib = NULL, $pp = NULL, $s = NULL,$desc = NULL) {
+        if (!is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc)) {
     // Si aucun de $m, $c et $i sont nuls,
     // c'est forcement qu'on les a fournis
     // donc on retombe sur le constructeur à 3 arguments
-            $this->idproduit = $idp;
             $this->libelle = $lib;
             $this->prixproduit = $pp;
             $this->stock = $s;
