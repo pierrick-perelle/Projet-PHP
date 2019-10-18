@@ -14,11 +14,7 @@ class Conf {
     'login' => 'perellep',
     // A l'IUT, c'est votre mdp (INE par defaut)
     // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-<<<<<<< HEAD
-    'password' => 'Ck2QTIKvZs0fYFMa'
-=======
     'password' => 'RVP-PHP'
->>>>>>> Perelle
   );
    
   static public function getLogin() {
