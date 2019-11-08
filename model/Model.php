@@ -29,6 +29,13 @@ class Model{
 }
 
     }
+    public static function selectAll(){
+      $table_name = static::$object;
+      $class_name = 'Model'.ucfirst($table_name);
+      $rep = Model::$pdo->query("SELECT * FROM ".$table_name);
+      $tab_result = $rep->fetchAll(PDO::FETCH_CLASS, $class_name);
+      return $tab_result;
+  }
 }
 
 Model::Init();
