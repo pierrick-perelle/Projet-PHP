@@ -1,21 +1,22 @@
 <?php
 require_once file::build_path(array("model","Model.php"));
 
-Class ModelProduit{
-    private $idproduit;
+Class ModelProduit extends Model{
+    static protected $object = 'produit';
+    private $idProduit;
     private $libelle;
-    private $prixproduit;
+    private $prixProduit;
     private $stock;
     private $description;
     
     public function getIdProduit() {
-        return $this->idproduit;  
+        return $this->idProduit;  
     }
     public function getLibelle(){
         return $this->libelle;
     }
     public function getPrixProduit(){
-        return $this->prixproduit;
+        return $this->prixProduit;
     }
     public function getStock(){
   	return $this->stock;
@@ -49,14 +50,11 @@ Class ModelProduit{
         $this->description = $desc2;
     }
     
-    public function __construct($idp = NULL, $lib = NULL, $pp = NULL, $s = NULL,$desc = NULL) {
-        if (!is_null($idp) && !is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc)) {
-    // Si aucun de $m, $c et $i sont nuls,
-    // c'est forcement qu'on les a fournis
-    // donc on retombe sur le constructeur à 3 arguments
-            $this->idproduit = $idp;
+    public function __construct($id = NULL, $lib = NULL, $pp = NULL, $s = NULL,$desc = NULL) {
+        if (!is_null($id) && !is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc)) {
+            $this->idProduit = $id;
             $this->libelle = $lib;
-            $this->prixproduit = $pp;
+            $this->prixProduit = $pp;
             $this->stock = $s;
             $this->description = $desc;
         }
@@ -89,10 +87,9 @@ Class ModelProduit{
   
     public function save(){
         try{
-            $sql = "INSERT INTO produit (idproduit, libelle, prixproduit, stock, description) VALUES (:idp_sql, :lib_sql, :prixproduit_sql, :stock_sql, :desc_sql)";
+            $sql = "INSERT INTO produit (libelle, prixproduit, stock, description) VALUES (:lib_sql, :prixproduit_sql, :stock_sql, :desc_sql)";
             $req_prep = Model::$pdo->prepare($sql);
             $values = array(
-                "idp_sql" => $this->idproduit,
                 "lib_sql" => $this->libelle,
                 "prixproduit_sql" => $this->prixproduit,
                 "stock_sql" => $this->stock,
