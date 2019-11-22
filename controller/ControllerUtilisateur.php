@@ -1,5 +1,8 @@
 <?php
 require_once(File::build_path(array("model","ModelUtilisateur.php")));
+require_once (File::build_path(array("lib","Security.php"))); // chargement du modèle
+require_once (File::build_path(array("lib","Session.php"))); // chargement du modèle
+
 class ControllerUtilisateur{
     
 protected static $object = 'utilisateur';

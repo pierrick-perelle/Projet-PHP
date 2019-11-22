@@ -59,7 +59,7 @@
                         <!-- PSW BIS -->
                         <div class="md-form">
     			<input class="form-control" type="password" name="mdpbis" id="mdpbis_id" value="" required>
-                            <label for="mdpbis_id">Retappez votre mot de passe</label>
+                            <label for="mdpbis_id">Retapez votre mot de passe</label>
                         </div>
                     </div>
                 </div>';
