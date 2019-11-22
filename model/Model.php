@@ -56,6 +56,73 @@ class Model{
           return false;
       return $tab[0];
    }
+   
+   public static function delete($primary_value) {
+      $table_name = ucfirst(static::$objet);
+      $primary_key = ucfirst(static::$primary);
+      try {
+        $sql = "DELETE from $table_name WHERE $primary_key=:nom_tag";
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+        $values = array(
+            "nom_tag" => $primary_value,
+        );
+        // On donne les valeurs et on exécute la requête   
+        $req_prep->execute($values);
+      } catch (PDOException $e) {
+        // Attention, si il y a une erreur, on renvoie false
+        return false;
+      }
+   }
+   // Update générique en fonction des données récupéré
+   public static function update($data) {
+      $val=""; 
+      $primary_key = static::$primary;
+      $table_name = ucfirst(static::$objet);
+      // Création du contenu SET de la requète SQL
+      foreach ($data as $cle => $valeur)
+          $val=$val.$cle.'=:'.$cle.',';
+      // Retrait de la dernière virgule en trop
+      $val=rtrim($val,",");
+      try {
+        $sql = "UPDATE $table_name SET $val WHERE $primary_key=:$primary_key;";
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+        foreach ($data as $cle => $valeur)
+          $values[$cle]=$valeur;
+        // On donne les valeurs et on exécute la requête   
+        $req_prep->execute($values);
+      } catch (PDOException $e) {
+        // Attention, si il y a une erreur, on renvoie false
+        return false;
+      }
+    }
+    // Save générique en fonction des données récupéré
+    public static function save($data) {
+      $val=""; 
+      $insert="";
+      $table_name = ucfirst(static::$objet);
+      // Création du contenu VALUES de la requète SQL
+      foreach ($data as $cle => $valeur){
+          $val=$val.$cle.',';
+          $insert=$insert.':'.$cle.',';
+      }
+      // Retrait de la dernière virgule en trop
+      $insert=rtrim($insert,",");
+      $val=rtrim($val,",");
+      try {
+        $sql = "INSERT INTO $table_name ($val) VALUES ($insert)";
+        // Préparation de la requête
+        $req_prep = Model::$pdo->prepare($sql);
+        foreach ($data as $cle => $valeur)
+          $values[$cle]=$valeur;
+        // On donne les valeurs et on exécute la requête   
+        $req_prep->execute($values);
+      } catch (PDOException $e) {
+        // Attention, si il y a une erreur, on renvoie false
+        return false;
+      }
+    }
 }
 
 Model::Init();
