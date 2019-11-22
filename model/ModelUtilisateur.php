@@ -35,7 +35,7 @@ class ModelUtilisateur extends Model {
     }
 
     public static function checkPassword($login,$mot_de_passe_chiffre){
-          $sql = "SELECT * FROM client WHERE login=:login AND mdp=:mdp";
+          $sql = "SELECT * FROM utilisateur WHERE login=:login AND mdp=:mdp";
           // Préparation de la requête
           $req_prep = Model::$pdo->prepare($sql);
 

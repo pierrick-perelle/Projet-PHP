@@ -112,7 +112,6 @@ class Model{
       $val=rtrim($val,",");
       try {
         $sql = "INSERT INTO $table_name ($val) VALUES ($insert)";
-        echo $sql;
         // Préparation de la requête
         $req_prep = Model::$pdo->prepare($sql);
         foreach ($data as $cle => $valeur)
