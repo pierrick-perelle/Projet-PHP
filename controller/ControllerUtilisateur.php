@@ -68,9 +68,13 @@ protected static $object = 'utilisateur';
         $chiffre = Security::chiffrer($_POST['mdp1']);
         $utilisateur = new ModelUtilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'],$_POST['email'], $chiffre);
 
+        $ligne array(
+        );
+
         if ($_POST['mdp1'] == $_POST['mdp2']) {
-            $utilisateur->save($_POST);
+            $utilisateur->save($ligne);
             $tab_u = ModelUtilisateur::selectAll();
+            $table_name = "client";
             $view = 'created';
             $pagetitle = 'Liste des utilisateurs';
             $chemin = array('view','view.php');
@@ -78,7 +82,7 @@ protected static $object = 'utilisateur';
         }
     }
     public static function update(){
-        $control=static::$objet;
+        $control=static::$object;
         $view='update';
         $pagetitle='Liste des utilisateurs';
         $chemin=array('view','view.php');

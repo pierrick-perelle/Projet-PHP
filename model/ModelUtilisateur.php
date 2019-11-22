@@ -8,7 +8,7 @@ class ModelUtilisateur extends Model {
     private $email;
     private $mdp;
     private $adresse;
-    protected static $objet = 'utilisateur';
+    protected static $object = 'utilisateur';
     protected static $primary='login';
 
     // Getter générique (pas expliqué en TD)
@@ -35,7 +35,7 @@ class ModelUtilisateur extends Model {
     }
 
     public static function checkPassword($login,$mot_de_passe_chiffre){
-          $sql = "SELECT * FROM Client WHERE login=:login AND mdp=:mdp";
+          $sql = "SELECT * FROM client WHERE login=:login AND mdp=:mdp";
           // Préparation de la requête
           $req_prep = Model::$pdo->prepare($sql);
 
