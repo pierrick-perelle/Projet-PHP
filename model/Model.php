@@ -30,14 +30,14 @@ class Model{
 
     }
     public static function selectAll(){
-      $table_name = static::$object;
+      $table_name = static::$objet;
       $class_name = 'Model'.ucfirst($table_name);
       $rep = Model::$pdo->query("SELECT * FROM ".$table_name);
       $tab_result = $rep->fetchAll(PDO::FETCH_CLASS, $class_name);
       return $tab_result;
   }
   public static function select($primary_value) {
-      $table_name = static::$object;
+      $table_name = static::$objet;
       $class_name = 'Model'.$table_name;
       $primary_key = ucfirst(static::$primary);
       $sql = "SELECT * from $table_name WHERE $primary_key=:nom_tag";
