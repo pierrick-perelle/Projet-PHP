@@ -2,9 +2,10 @@
     <div class="">
         <?php
             echo '<p> Nom d\'Utilisateur : ' . htmlspecialchars($v->get("login")) . '.</p>';
-            echo '<p> Nom : ' . htmlspecialchars($v->get("nom")) . '.</p>';
-            echo '<p> Prenom : ' . htmlspecialchars($v->get("prenom")) . '.</p>';
-            echo '<p> Email : ' . htmlspecialchars($v->get("email")) . '.</p>';
+            echo '<p> Nom : ' . htmlspecialchars($v->get("nomClient")) . '.</p>';
+            echo '<p> Prenom : ' . htmlspecialchars($v->get("prenomClient")) . '.</p>';
+            echo '<p> Email : ' . htmlspecialchars($v->get("mailClient")) . '.</p>';
+            echo '<p> Adresse : ' . htmlspecialchars($v->get("adresseClient")) . '.</p>';
             echo '</div>';
             echo '<div class="text-center">';
  
