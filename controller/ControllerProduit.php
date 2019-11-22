@@ -7,7 +7,7 @@ Class ControllerProduit{
     public static $object= "produit";
     
     public static function readAll(){
-        $tab_v = ModelProduit::selectAll();     //appel au modèle pour gerer la BD
+        $tab_result = ModelProduit::selectAll();     //appel au modèle pour gerer la BD
         $controller='produit';$view='list';$pagetitle='Liste des produits';
         require(File::build_path(array("view","view.php")));
     } //redirige vers la vue

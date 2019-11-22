@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $prixTotal=0;
     if(!isset($_SESSION['panier'])){
         $_SESSION['panier'] = array();
     }
@@ -12,10 +13,11 @@
     if(isset($_SESSION['panier'])){
         foreach($_SESSION['panier'] as $product){
             $object = ModelProduit::getProduitById($product[0]);
-            $_SESSION['prix'] += $object->getPrixProduit();
-            echo "$object->getPrixProduit()";
+            $prixTotal += $object->get("prix") * $product[1];
+            var_dump($product);
+            }
+        $_SESSION['prix'] = $prixTotal;
         }
-    }
     echo $_SESSION['prix'];
 //    $s = __DIR__.$DS.'lib'.$DS.'file.php';
 //    echo $s;

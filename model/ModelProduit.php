@@ -57,7 +57,7 @@ Class ModelProduit extends Model{
     return $tab_produit[0];
   }
   public static function ajoutProduitPanier($data){
-      array_push($_SESSION['panier'],$data);
+      array_push($_SESSION['panier'],$data); //need stack on idp
       
   }
 }
