@@ -55,7 +55,7 @@ Class ModelProduit extends Model{
         if (!is_null($id) && !is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc)) {
             $this->idProduit = $id;
             $this->libelle = $lib;
-            $this->prixProduit = $pp;
+            $this->prix = $pp;
             $this->stock = $s;
             $this->description = $desc;
         }
@@ -85,26 +85,8 @@ Class ModelProduit extends Model{
         return false;
     return $tab_produit[0];
   }
-  
-    public function save(){
-        try{
-            $sql = "INSERT INTO produit (libelle, prixproduit, stock, description) VALUES (:lib_sql, :prixproduit_sql, :stock_sql, :desc_sql)";
-            $req_prep = Model::$pdo->prepare($sql);
-            $values = array(
-                "lib_sql" => $this->libelle,
-                "prixproduit_sql" => $this->prixproduit,
-                "stock_sql" => $this->stock,
-                "desc_sql" => $this->description,
-            );
-            $req_prep->execute($values);
-            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
-            return true;
-        }catch (PDOException $e) {
-            /*echo $e->getMessage(); // affiche un message d'erreur;*/
-            return false;
-            
-        }
-    }
+ 
+ 
     public function deleteProduit(){
         try{
             $sql = "DELETE FROM produit WHERE idproduit = (:idp_sql)";
@@ -136,25 +118,10 @@ Class ModelProduit extends Model{
         }
       
   }
-    public function update($data){
-        try{
-            $sql = "UPDATE produit SET libelle = (:lib_sql), prixproduit = (:prixproduit_sql), stock = (:stock_sql), description = (:desc_sql)  WHERE idproduit = (:idp_sql)";
-            $req_prep = Model::$pdo->prepare($sql);
-            $values = array(
-                "idp_sql" => $data['idp'],
-                "libelle_sql" => $data['libelle'],
-                "desc_sql" => $data['desc'],
-                "stock_sql" => $data['stock'],
-                "prixproduit_sql" => $data['prixproduit'],
-            );
-            $req_prep->execute($values);
-            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
-            return true;
-        }catch (PDOException $e) {
-            /*echo $e->getMessage(); // affiche un message d'erreur;*/
-            return false;    
-        }
-    }
+  public static function ajoutProduitPanier($data){
+      array_push($_SESSION['panier'],$data);
+      
+  }
 }
 
 

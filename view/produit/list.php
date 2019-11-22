@@ -11,10 +11,12 @@ foreach ($tab_v as $v){
     $id = htmlspecialchars($v->getIdProduit());
     echo 'Produit: '.'<a href ="?action=read&idprod='.$v->getIdProduit().'">'.$v->getLibelle() .'</a> || '.'<a href="?action=delete&idprod='.$v->getIdProduit().'">'.'Supprimer'.'</a>';
     echo <<< EOT
-                <form method="get" action="ajout.php">
+                <form method="get" action="index.php">
                     <label for="qte">Quantité</label>
                     <input type=number id="qte" name="quantite"  value="1" min="1" max="$stock"/>
-                    <input type=hidden id="idproduit" value="$id"/>
+                    <input type=hidden id="idproduit" name="idproduit" value="$id"/>
+                    <input type=hidden name="action" value="addPanier"/>
+                    <input type=hidden name="controller" value="Produit"/>
                     <input type="submit" value="Ajouter au panier"/>
                 </form>
 EOT;
