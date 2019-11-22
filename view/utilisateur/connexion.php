@@ -1,5 +1,4 @@
-<div class="mx-5 py-5">
-  <!-- Material form login -->
+<div class="">
   <?php
   if (isset($login)) {
     echo '<div class="alert alert-danger" role="alert">
@@ -7,43 +6,26 @@
         </div>';
   }
   ?>
-<div class="card">
+<div class="">
 
-  <h5 class="card-header orange accent-4 white-text text-center py-4">
+  <h5 class="">
     <strong>Connectez-vous</strong>
   </h5>
-
-  <!--Card content-->
-  <div class="card-body px-lg-5 pt-0">
-
-    <!-- Form -->
-    <form method="post" class="text-center" style="color: #757575;" action="?controller=utilisateur&action=connected">
-
-      <!-- Email -->
-      <div class="md-form">
-        <input class="form-control" type="text" placeholder="" name="login" id="materialLoginFormEmail" value="<?php if(isset($login)){ echo $login; } ?>" required />
+  <div class="">
+    <form method="post" class="" style="color: #757575;" action="?controller=utilisateur&action=connected">
+      <div class="">
+        <input class="" type="text" placeholder="" name="login" id="materialLoginFormEmail" value="<?php if(isset($login)){ echo $login; } ?>" required />
         <label for="materialLoginFormEmail">Login</label>
       </div>
-
-      <!-- Password -->
-      <div class="md-form">
-        <input class="form-control" type="password" name="mdp" id="materialLoginFormPassword" value="" required>
+      <div class="">
+        <input class="" type="password" name="mdp" id="materialLoginFormPassword" value="" required>
         <label for="materialLoginFormPassword">Password</label>
       </div>
-
-      <!-- Sign in button -->
-      <button class="btn orange accent-4 btn-rounded btn-block my-4 white-text waves-effect z-depth-0" type="submit">Connexion</button>
-
-      <!-- Register -->
+      <button class="" type="submit">Connexion</button>
       <p>Vous n'êtes pas un membre ?
         <a href="./?controller=utilisateur&action=create">Incrivez-vous</a>
       </p>
-
     </form>
-    <!-- Form -->
-
   </div>
-
 </div>
-<!-- Material form login -->
 </div>
