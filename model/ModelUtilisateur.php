@@ -6,7 +6,9 @@ class ModelUtilisateur extends Model {
     private $nom;
     private $prenom;
     private $email;
-    protected static $objet = 'Client';
+    private $mdp;
+    private $adresse;
+    protected static $objet = 'utilisateur';
     protected static $primary='login';
 
     // Getter générique 

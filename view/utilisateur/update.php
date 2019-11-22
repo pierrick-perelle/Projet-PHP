@@ -27,6 +27,14 @@
                             <label for="nom_id">Nom</label>
                         </div>
                     </div>
+                    <div class="">
+                        <!-- Adresse -->
+                        <div class="">
+                            <input type="text" placeholder="" class="form-control" name="adresse" id="adresse_id" value="<?php echo htmlspecialchars($v->get("adresse"))?>" required/>
+                            <label for="nom_id">Adresse</label>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="">
@@ -51,14 +59,14 @@
                     <div class="col">
                         <!-- PSW -->
                         <div class="md-form">
-    			<input class="form-control" type="password" name="mdp" id="mdp_id" value="" required>
+    			<input class="form-control" type="password" name="mdp1" id="mdp1_id" value="" required>
                             <label for="mdp_id">Mot de passe</label>
                         </div>
                     </div>
                     <div class="col">
                         <!-- PSW BIS -->
                         <div class="md-form">
-    			<input class="form-control" type="password" name="mdpbis" id="mdpbis_id" value="" required>
+    			<input class="form-control" type="password" name="mdp2" id="mdp2_id" value="" required>
                             <label for="mdpbis_id">Retapez votre mot de passe</label>
                         </div>
                     </div>
