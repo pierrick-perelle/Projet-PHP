@@ -8,7 +8,7 @@
       $_SESSION['panier'] = array();
       array_push($_SESSION['panier'],$panier);
   }
-  header('Location: http://webinfo/~perellep/Projet/index.php?action=readAll');
+  header('Location: File::build_path(array("index.php")');
   exit();
 ?>
 
