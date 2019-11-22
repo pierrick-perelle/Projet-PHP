@@ -9,7 +9,7 @@
 foreach ($tab_v as $v){
     $stock = htmlspecialchars($v->getStock());
     $id = htmlspecialchars($v->getIdProduit());
-    echo 'Produit: '.'<a href ="routeur.php?action=read&idprod='.$v->getIdProduit().'">'.$v->getLibelle() .'</a> || '.'<a href="routeur.php?action=delete&idprod='.$v->getIdProduit().'">'.'Supprimer'.'</a>';
+    echo 'Produit: '.'<a href ="?action=read&idprod='.$v->getIdProduit().'">'.$v->getLibelle() .'</a> || '.'<a href="?action=delete&idprod='.$v->getIdProduit().'">'.'Supprimer'.'</a>';
     echo <<< EOT
                 <form method="get" action="ajout.php">
                     <label for="qte">Quantité</label>

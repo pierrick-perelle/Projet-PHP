@@ -8,13 +8,13 @@ class Conf {
     'hostname' => 'webinfo',
     // A l'IUT, vous avez une BDD nommee comme votre login
     // Sur votre machine, vous devrez creer une BDD
-    'database' => 'perellep',
+    'database' => 'vialaw',
     // A l'IUT, c'est votre login
     // Sur votre machine, vous avez surement un compte 'root'
-    'login' => 'perellep',
+    'login' => 'vialaw',
     // A l'IUT, c'est votre mdp (INE par defaut)
     // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-    'password' => 'RVP-PHP'
+    'password' => 'ZB3bzbeb?'
   );
    
   static public function getLogin() {

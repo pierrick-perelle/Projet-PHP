@@ -6,6 +6,7 @@
 </head>
 <body>
 <?php
+
 echo  'Produit: '.$v->getIdProduit().' libelle: ' . $v->getLibelle() . ' prix: '.$v->getPrixProduit() . ' stock: '.$v->getStock() . ' description: ' . $v->getDescription() ;
 
 ?>

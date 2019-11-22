@@ -3,9 +3,10 @@ require_once file::build_path(array("model","Model.php"));
 
 Class ModelProduit extends Model{
     static protected $object = 'produit';
+    static protected $primary = 'idProduit';
     private $idProduit;
     private $libelle;
-    private $prixProduit;
+    private $prix;
     private $stock;
     private $description;
     
@@ -16,7 +17,7 @@ Class ModelProduit extends Model{
         return $this->libelle;
     }
     public function getPrixProduit(){
-        return $this->prixProduit;
+        return $this->prix;
     }
     public function getStock(){
   	return $this->stock;

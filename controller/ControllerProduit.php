@@ -3,6 +3,9 @@
 require_once(File::build_path(array("model","ModelProduit.php")));
 
 Class ControllerProduit{
+    
+    public static $object= "produit";
+    
     public static function readAll(){
         $tab_v = ModelProduit::selectAll();     //appel au modèle pour gerer la BD
          $controller='produit';$view='list';$pagetitle='Liste des produits';
@@ -10,12 +13,14 @@ Class ControllerProduit{
     } //redirige vers la vue
 
     public static function read(){
-        $v = ModelProduit::getProduitById($_GET['idprod']);
+        $v = ModelProduit::select($_GET['idprod']);
         if(empty($v)){
-            require(File::build_path(array("view","produit","error.php")));
+            $view='error';
+            require(File::build_path(array("view","view.php")));
         }
         else{
-            require(File::build_path(array("view","produit","detail.php")));
+            $view='detail';
+            require(File::build_path(array("view","view.php")));
         }
     }
     public static function create(){
