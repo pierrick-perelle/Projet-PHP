@@ -15,6 +15,7 @@ foreach ($tab_v as $v){
                     <label for="qte">Quantité</label>
                     <input type=number id="qte" name="quantite"  value="1" min="1" max="$stock"/>
                     <input type=hidden id="idproduit" value="$id"/>
+                    <input type=hidden name="action" value="readAll"/>
                     <input type="submit" value="Ajouter au panier"/>
                 </form>
 EOT;

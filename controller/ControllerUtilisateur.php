@@ -63,4 +63,19 @@ protected static $object = 'utilisateur';
         $pagetitle='Connexion';
         require (File::build_path(array("view","view.php")));  //"redirige" vers la vue
     }
+
+    public static function connected(){
+        require_once(File::build_path(array('lib','Security.php')));
+        $couple = ModelUtilisateur::checkPassword($_POST['login'],Security::chiffrer($_POST['mdp']));
+        if($couple){
+            $_SESSION['login'] = $_POST['login'];
+            $u = ModelUtilisateur::select($_POST['login']);
+            $view='detail';
+            $pagetitle = 'Vos details';
+            require_once(File::build_path(array('view','utilisateur','view.php')));
+        }
+        else {
+            echo 'invalide login ou password';
+        }
+    }
     }

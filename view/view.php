@@ -6,8 +6,8 @@
     </head>
     <body>
         <p style="border: 1px solid black;text-align:center;padding-right:1em;">
-        <a href="index.php?action=readAll">Les Produits</a>
-        <a href="index.php?action=readAll&controller=panier">Mon Panier</a>
+        <a href="index.php?action=readAll">Les Produits</a> ||
+        <a href="index.php?action=readAll&controller=panier">Mon Panier</a> ||
         <a href="index.php?action=connect&controller=utilisateur">Connexion</a>
         </p>
 <?php
