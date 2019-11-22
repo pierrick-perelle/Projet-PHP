@@ -68,11 +68,17 @@ protected static $object = 'utilisateur';
         $chiffre = Security::chiffrer($_POST['mdp1']);
         $utilisateur = new ModelUtilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'],$_POST['email'], $chiffre);
 
-        $ligne array(
+        $tuple = array(
+            "nomClient" => $_POST['nom'],
+            "prenomClient" => $_POST['prenom'],
+            "adresseClient" => $_POST['adresse'],
+            "mailClient" => $_POST['email'],
+            "login" => $_POST['login'],
+            "mdp" => $chiffre
         );
 
         if ($_POST['mdp1'] == $_POST['mdp2']) {
-            $utilisateur->save($ligne);
+            $utilisateur->save($tuple);
             $tab_u = ModelUtilisateur::selectAll();
             $table_name = "client";
             $view = 'created';
