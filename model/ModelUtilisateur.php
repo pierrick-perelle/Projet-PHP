@@ -6,17 +6,19 @@ class ModelUtilisateur extends Model {
     private $nom;
     private $prenom;
     private $email;
-    protected static $objet = 'Utilisateur';
+    private $mdp;
+    private $adresse;
+    protected static $objet = 'utilisateur';
     protected static $primary='login';
 
-    // Getter générique (pas expliqué en TD)
+    // Getter générique 
     public function get($nom_attribut) {
         if (property_exists($this, $nom_attribut))
             return $this->$nom_attribut;
         return false;
     }
 
-    // Setter générique (pas expliqué en TD)
+    // Setter générique
     public function set($nom_attribut, $valeur) {
         if (property_exists($this, $nom_attribut))
             $this->$nom_attribut = $valeur;
@@ -33,7 +35,7 @@ class ModelUtilisateur extends Model {
     }
 
     public static function checkPassword($login,$mot_de_passe_chiffre){
-          $sql = "SELECT * FROM `Utilisateur` WHERE login=:login AND mdp=:mdp";
+          $sql = "SELECT * FROM Client WHERE login=:login AND mdp=:mdp";
           // Préparation de la requête
           $req_prep = Model::$pdo->prepare($sql);
 
@@ -43,7 +45,7 @@ class ModelUtilisateur extends Model {
           );
           // On donne les valeurs et on exécute la requête   
           $req_prep->execute($values);
-          $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelTrajet');
+          $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
           $result = $req_prep->fetchAll();
           if (empty($result)) {
             return false;
