@@ -61,6 +61,8 @@ protected static $object = 'utilisateur';
         $pagetitle='Inscription';
         require (File::build_path(array("view","view.php")));  //"redirige" vers la vue
     }
+    
+    
     public static function connect() {
         $view='connexion';
         $pagetitle='Connexion';

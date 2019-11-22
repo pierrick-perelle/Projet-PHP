@@ -9,14 +9,14 @@ class ModelUtilisateur extends Model {
     protected static $objet = 'Client';
     protected static $primary='login';
 
-    // Getter générique (pas expliqué en TD)
+    // Getter générique 
     public function get($nom_attribut) {
         if (property_exists($this, $nom_attribut))
             return $this->$nom_attribut;
         return false;
     }
 
-    // Setter générique (pas expliqué en TD)
+    // Setter générique
     public function set($nom_attribut, $valeur) {
         if (property_exists($this, $nom_attribut))
             $this->$nom_attribut = $valeur;
