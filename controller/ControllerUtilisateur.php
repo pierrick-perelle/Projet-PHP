@@ -91,8 +91,11 @@ protected static $object = 'utilisateur';
         $control=static::$object;
         $view='update';
         $pagetitle='Liste des utilisateurs';
+        $v = ModelUtilisateur::select($_GET['login']);
+        $effect='updated';
+        $input='required';
         $chemin=array('view','view.php');
-        require_once (File::build_path($chemin));
+        require_once (File::build_path(array("view","view.php")));
     }
     public static function updated(){
         require_once(File::build_path(array('lib','Security.php')));

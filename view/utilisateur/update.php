@@ -6,9 +6,10 @@
     		echo 'Inscription';
     	} else {
     		echo 'Mettre à jour';
-    	}
-    	?></strong>
-        </h5>
+    	}?>
+            </strong>
+        </h5>      
+        
         <div class="">      
             <form class="" style="color: #757575;" method="post" action="?action=<?php echo $effect ?>&controller=<?php echo static::$object ?>">
 
@@ -41,7 +42,7 @@
                     <div class="">
                         <!-- Login -->
                         <div class="">
-    			<input class="form-control" type="text" placeholder="" name="login" id="log_id" value="<?php echo htmlspecialchars($v->get("login")).'" '. $input?> />
+    			<input class="form-control" type="text" placeholder="" name="login" id="log_id" value="<?php echo htmlspecialchars($v->get("login")).'" '.$input?> />
                             <label for="log_id">Nom d'utilisateur</label>
                         </div>
                     </div>
