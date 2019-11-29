@@ -56,10 +56,35 @@ Class ModelProduit extends Model{
         return false;
     return $tab_produit[0];
   }
-  public static function ajoutProduitPanier($data){
-      array_push($_SESSION['panier'],$data); //need stack on idp
-      
+  public static function ajoutProduitPanier($idp,$qte){
+        $estadd = 0;
+        if(isset($_SESSION['panier'][0])){
+            foreach ($_SESSION['panier'] as $key => $value){
+                if($value[0] == $idp){
+                    $_SESSION['panier'][$key][1] += $qte;
+                    $estadd = 1;
+                }
+            }
+        }
+        if($estadd == 0){
+            array_push($_SESSION['panier'],array($idp,$qte)); $estadd = 1;
+        }
+        ModelProduit::calculPrixPanier();
+        return $estadd;
   }
+  public static function calculPrixPanier(){
+        $prixtotal = 0;
+        if(!isset($_SESSION['prix'])){
+            $_SESSION['prix'] = 0;
+        }
+        foreach($_SESSION['panier'] as $article){
+                if(($product = ModelProduit::select($article[0])) != false){
+                    $prixtotal += $product->get("prix") * $article[1];
+                }
+                $_SESSION['prix'] = $prixtotal;
+            }
+        }
+        
 }
 
 ?>

@@ -18,7 +18,6 @@ foreach ($tab_result as $result){
                     <input type=hidden name="action" value="addPanier"/>
                     <input type=hidden name="controller" value="Produit"/>
                     <input type=hidden id="idproduit" value="$id"/>
-                    <input type=hidden name="action" value="readAll"/>
                     <input type="submit" value="Ajouter au panier"/>
                 </form>
 EOT;

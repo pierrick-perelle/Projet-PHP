@@ -57,8 +57,7 @@ Class ControllerProduit{
         }
     }
     public static function addPanier(){
-        $panier = array($_GET['idproduit'],$_GET['quantite']);
-        ModelProduit::ajoutProduitPanier($panier);
+        ModelProduit::ajoutProduitPanier($_GET['idproduit'],$_GET['quantite']);
         self::readAll();
     }
 }
