@@ -15,7 +15,6 @@ else{
     }
     //controller par defaut
     else {
-        echo '<p> pref par defaut </p>';
         $controller='produit';
     }
 }

@@ -83,7 +83,12 @@ Class ModelProduit extends Model{
                 }
                 $_SESSION['prix'] = $prixtotal;
             }
-        }
+    }
+    
+    public static function modifierQuantite($key,$qte){
+        $_SESSION['panier'][$key][1] = $qte;
+        ModelProduit::calculPrixPanier();
+    }
         
 }
 

@@ -12,10 +12,8 @@
     $DS = DIRECTORY_SEPARATOR;
     require_once __DIR__.$DS.'lib'.$DS.'File.php';
     require_once File::build_path(array("controller","routeur.php"));
-    var_dump($_SESSION['prix']);
-    var_dump($_SESSION['panier']);
     
-    #if(isset($_SESSION['panier'])){
+    /*if(isset($_SESSION['panier'])){
     #    foreach($_SESSION['panier'] as $product){
     #        $object = ModelProduit::getProduitById($product[0]);
     #        $prixTotal += $object->get("prix") * $product[1];
@@ -25,7 +23,7 @@
     #    }
     #echo $_SESSION['prix'];
 //    $s = __DIR__.$DS.'lib'.$DS.'file.php';
-//    echo $s;
+//    echo $s;*/
 
 ?>
 
