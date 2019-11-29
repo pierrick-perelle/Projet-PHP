@@ -6,10 +6,10 @@
 </head>
 <body>
 <?php
-foreach ($tab_v as $v){
-    $stock = htmlspecialchars($v->getStock());
-    $id = htmlspecialchars($v->getIdProduit());
-    echo 'Produit: '.'<a href ="?action=read&idprod='.$v->getIdProduit().'">'.$v->getLibelle() .'</a> || '.'<a href="?action=delete&idprod='.$v->getIdProduit().'">'.'Supprimer'.'</a>';
+foreach ($tab_result as $result){
+    $stock = htmlspecialchars($result->get("stock"));
+    $id = htmlspecialchars($result->get("idProduit"));
+    echo 'Produit: '.'<a href ="?action=read&idprod='.$result->get("idProduit").'">'.$result->get("libelle") .'</a> || '.'<a href="?action=delete&idprod='.$result->get("idProduit").'">'.'Supprimer'.'</a>';
     echo <<< EOT
                 <form method="get" action="index.php">
                     <label for="qte">Quantité</label>
@@ -17,6 +17,8 @@ foreach ($tab_v as $v){
                     <input type=hidden id="idproduit" name="idproduit" value="$id"/>
                     <input type=hidden name="action" value="addPanier"/>
                     <input type=hidden name="controller" value="Produit"/>
+                    <input type=hidden id="idproduit" value="$id"/>
+                    <input type=hidden name="action" value="readAll"/>
                     <input type="submit" value="Ajouter au panier"/>
                 </form>
 EOT;

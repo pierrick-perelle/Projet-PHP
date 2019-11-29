@@ -101,7 +101,7 @@ class Model{
     public static function save($data) {
       $val=""; 
       $insert="";
-      $table_name = static::$object;
+      $table_name = ucfirst(static::$object);
       // Création du contenu VALUES de la requète SQL
       foreach ($data as $cle => $valeur){
           $val=$val.$cle.',';

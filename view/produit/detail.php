@@ -6,8 +6,8 @@
 </head>
 <body>
 <?php
-
-echo  'Produit: '.$v->getIdProduit().' libelle: ' . $v->getLibelle() . ' prix: '.$v->getPrixProduit() . ' stock: '.$v->getStock() . ' description: ' . $v->getDescription() ;
+var_dump($v);
+echo  'Produit: '.$v->get("idProduit").' libelle: ' . $v->get("libelle") . ' prix: '.$v->get("prix") . ' stock: '.$v->get("stock") . ' description: ' . $v->get("description");
 
 ?>
 </body>
