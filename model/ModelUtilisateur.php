@@ -8,7 +8,7 @@ class ModelUtilisateur extends Model {
     private $email;
     private $mdp;
     private $adresse;
-    protected static $object = 'utilisateur';
+    protected static $objet = 'utilisateur';
     protected static $primary='login';
 
     // Getter générique 

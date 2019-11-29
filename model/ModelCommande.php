@@ -1,7 +1,7 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 require_once File::build_path(array("model", "ModelProduit.php"));
-require_once File::build_path(array("model", "ModelListecommandeClient.php"));
+require_once File::build_path(array("model", "ModelListecommande.php"));
 
 class ModelCommandeClient extends Model{
     
@@ -10,24 +10,22 @@ class ModelCommandeClient extends Model{
     private $idClient;
     private $listeProduits=array();
     private $dateCommande;
-    private $dateLivraison;
     private $prixTotal=0;
-    protected static $objet = 'CommandeClient';
-    protected static $primary='idCommandeClient';
+    protected static $objet = 'Commande';
+    protected static $primary='idCommande';
     
     
-    public function __construct($idC = NULL, $dC = NULL, $idCC = NULL, $dL=NULL, $lP=NULL){
+    public function __construct($idC = NULL, $dC = NULL, $idCC = NULL, $lP=NULL){
         if (!is_null($idC) && !is_null($dC)){
-            $idCommandeClient=$idCC;
+            $idCommande=$idCC;
             $idClient = $idC;
             $dateCommande = $dC;
-            $dateLivraison = $dL;
             $listeProduits=$lP;
         }
         //si c'est une nouvelle commande
-        if(is_null($idCommandeClient)){ self::toList();}
+        if(is_null($idCommande)){ self::toList();}
         else {        
-            ModelListeProduitsCommande::select($idCommandeClient);
+            ModelListeProduitsCommande::select($idCommande);
         }
     }
     
@@ -50,11 +48,11 @@ class ModelCommandeClient extends Model{
  	}
  	//$this->prixTotal=$pT;
  	$this->prixTotal=$_SESSION['prix'];        
- 	$_COOKIE['Panier']=serialize($contenuPanier);
+ 	$_SESSION['panier']=$contenuPanier;
     }
     
     public function saveList(){
-      $values[':idCC']= ModelCommandeClient::$pdo->lastInsertId();
+      $values[':idCC']= ModelCommande::$pdo->lastInsertId();
       $donnees="";
       $numeroProd=0;
       // Création de chaque combinaison produit quantité à inserer dans la listeProdClient
@@ -69,7 +67,7 @@ class ModelCommandeClient extends Model{
       $donnees=rtrim($donnees,",");      
       try {
         $numeroProd=0;
-        $sql = "INSERT INTO ListeProduitsCommande(idCommandeClient,idProduit,quantite) VALUES $donnees";
+        $sql = "INSERT INTO listeProduitsCommande(idCommande,idProduit,quantite) VALUES $donnees";
         // Préparation de la requête
         $req_prep = Model::$pdo->prepare($sql);
         // On donne les valeurs et on exécute la requête   

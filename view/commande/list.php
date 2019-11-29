@@ -28,13 +28,13 @@
 
         <tbody>
 		<?php
-                   foreach ($tab_CommandeClient as $Commande){
+                   foreach ($tab_Commande as $Commande){
                     $cli=ModelClient::select($Commande->get("idClient"));
                    	echo '<tr> <th> '.$cli->get('nomClient').'</th> ';
-                    echo '<td> '.htmlspecialchars($Commande->get("idCommandeClient")).'</td> ';                  
+                    echo '<td> '.htmlspecialchars($Commande->get("idCommande")).'</td> ';                  
                     echo '<td> '.htmlspecialchars($Commande->get("dateCommande")).'</td> ';
                     echo '<td> '.htmlspecialchars($Commande->get("prixTotal")).'</td> ';
-                    echo '<td>' . '<a href="?action=delete&idCommandeClient='.rawurlencode($Commande->get("idCommandeClient")).'&controller=CommandeClient"><i class="material-icons">delete</i></a>';                 
+                    //echo '<td>' . '<a href="?action=delete&idCommandeClient='.rawurlencode($Commande->get("idCommandeClient")).'&controller=CommandeClient"><i class="material-icons">delete</i></a>';                 
                     /*echo '<form method="post" action="?action=update&controller=commande">
                                 <input type="hidden" name="idProduit" id="idProduit_id" value="'.htmlspecialchars($Commande->get("idProduit")).'">
                                 <input type="hidden" name="idFournisseur" id="idFournisseur_id" value="'.htmlspecialchars($Commande->get("idFournisseur")).'">
@@ -44,8 +44,9 @@
                                 </div>
                                   </p>
                               </form>'. '</td>'; */
-                    echo '<td>' . '<a href="?action=detail&idCommandeClient='.rawurlencode($Commande->get("idCommandeClient")).'&controller=CommandeClient"><i class="material-icons">search</i></a>';
-                  }               
+                    echo '<td>' . '<a href="?action=detail&idCommande='.rawurlencode($Commande->get("idCommande")).'&controller=Commande"><i class="material-icons">search</i></a>';
+                  }     
+                  
         ?>
          </tbody>
 </table>
