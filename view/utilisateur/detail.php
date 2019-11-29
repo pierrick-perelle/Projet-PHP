@@ -10,8 +10,8 @@
             echo '<div class="text-center">';
  
         if (Session::is_user($v->get("login"))===true or Session::is_admin()==true) {
-            echo '<a href="?action=delete&controller=Utilisateur&login='.rawurlencode($v->get("login")).'"><button class="" type="submit">Supprimer</button></a>'; 
-            echo '<a href="?action=update&controller=Utilisateur&login='.rawurlencode($v->get("login")).'"><button class="" type="submit">Modifier</button></a>';
+            echo '<a href="?action=delete&controller=utilisateur&login='.rawurlencode($v->get("login")).'"><button class="" type="submit">Supprimer</button></a>';
+            echo '<a href="?action=update&controller=utilisateur&login='.rawurlencode($v->get("login")).'"><button class="" type="submit">Modifier</button></a>';
         }
         
         ?>
