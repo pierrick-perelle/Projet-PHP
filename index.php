@@ -18,7 +18,7 @@
             }
         $_SESSION['prix'] = $prixTotal;
         }
-    echo $_SESSION['prix'];
+    /*echo $_SESSION['prix'];*/
 //    $s = __DIR__.$DS.'lib'.$DS.'file.php';
 //    echo $s;
 
