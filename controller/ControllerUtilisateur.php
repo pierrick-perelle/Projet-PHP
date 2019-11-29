@@ -68,9 +68,19 @@ protected static $object = 'utilisateur';
         $chiffre = Security::chiffrer($_POST['mdp1']);
         $utilisateur = new ModelUtilisateur($_POST['nom'], $_POST['prenom'], $_POST['login'],$_POST['email'], $chiffre);
 
+        $tuple = array(
+            "nomClient" => $_POST['nom'],
+            "prenomClient" => $_POST['prenom'],
+            "adresseClient" => $_POST['adresse'],
+            "mailClient" => $_POST['email'],
+            "login" => $_POST['login'],
+            "mdp" => $chiffre
+        );
+
         if ($_POST['mdp1'] == $_POST['mdp2']) {
-            $utilisateur->save($_POST);
+            $utilisateur->save($tuple);
             $tab_u = ModelUtilisateur::selectAll();
+            $table_name = "client";
             $view = 'created';
             $pagetitle = 'Liste des utilisateurs';
             $chemin = array('view','view.php');
@@ -78,7 +88,7 @@ protected static $object = 'utilisateur';
         }
     }
     public static function update(){
-        $control=static::$objet;
+        $control=static::$object;
         $view='update';
         $pagetitle='Liste des utilisateurs';
         $chemin=array('view','view.php');
@@ -116,7 +126,7 @@ protected static $object = 'utilisateur';
         $couple = ModelUtilisateur::checkPassword($_POST['login'],Security::chiffrer($_POST['mdp']));
         if($couple){
             $_SESSION['login'] = $_POST['login'];
-            $u = ModelUtilisateur::select($_POST['login']);
+            $v = ModelUtilisateur::select($_POST['login']);
             $view='detail';
             $pagetitle = 'Vos details';
             require_once(File::build_path(array('view','view.php')));
