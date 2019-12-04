@@ -57,10 +57,20 @@ Class ControllerProduit{
         }
     }
     public static function addPanier(){
-        $panier = array($_GET['idproduit'],$_GET['quantite']);
-        ModelProduit::ajoutProduitPanier($panier);
+        ModelProduit::ajoutProduitPanier($_GET['idproduit'],$_GET['quantite']);
         self::readAll();
     }
+    
+    public static function readPanier(){
+            $controller='produit';$view='panier';$pagetitle='Liste des produits';
+            require(File::build_path(array("view","view.php")));
+    }
+    public static function modify(){
+        ModelProduit::modifierQuantite($_POST['key'],$_POST['qte']);
+        $controller='produit';$view='panier';$pagetitle='Liste des produits';
+        require(File::build_path(array("view","view.php")));
+    }
+    
 }
 
 ?>
