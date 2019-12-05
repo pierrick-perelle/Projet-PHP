@@ -78,7 +78,7 @@ class Model{
    public static function update($data) {
       $val=""; 
       $primary_key = static::$primary;
-      $table_name = ucfirst(static::$object);
+      $table_name = static::$object;
       // Création du contenu SET de la requète SQL
       foreach ($data as $cle => $valeur)
           $val=$val.$cle.'=:'.$cle.',';
@@ -94,6 +94,7 @@ class Model{
         $req_prep->execute($values);
       } catch (PDOException $e) {
         // Attention, si il y a une erreur, on renvoie false
+          echo $e;
         return false;
       }
     }
@@ -101,7 +102,7 @@ class Model{
     public static function save($data) {
       $val=""; 
       $insert="";
-      $table_name = ucfirst(static::$object);
+      $table_name = static::$object;
       // Création du contenu VALUES de la requète SQL
       foreach ($data as $cle => $valeur){
           $val=$val.$cle.',';
@@ -118,8 +119,8 @@ class Model{
           $values[$cle]=$valeur;
         // On donne les valeurs et on exécute la requête   
         $req_prep->execute($values);
-      } catch (PDOException $e) {
-        // Attention, si il y a une erreur, on renvoie false
+      } catch(PDOException $e) {
+          echo $e->getMessage(); //
         return false;
       }
     }

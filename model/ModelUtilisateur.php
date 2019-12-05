@@ -3,11 +3,11 @@
 class ModelUtilisateur extends Model {
 
     private $login;
-    private $nom;
-    private $prenom;
-    private $email;
+    private $nomClient;
+    private $prenomClient;
+    private $mailClient;
     private $mdp;
-    private $adresse;
+    private $adresseClient;
     protected static $object = 'utilisateur';
     protected static $primary='login';
 
@@ -26,16 +26,19 @@ class ModelUtilisateur extends Model {
     }
 
     // un constructeur
-    public function __construct($login = NULL, $nom = NULL, $prenom = NULL) {
+    public function __construct($login = NULL, $nom = NULL, $prenom = NULL, $mailClient = NULL, $mdp = NULL, $adresseClient=NULL) {
         if (!is_null($login) && !is_null($nom) && !is_null($prenom)) {
             $this->login = $login;
-            $this->nom = $nom;
-            $this->prenom = $prenom;
+            $this->nomClient = $nom;
+            $this->prenomClient = $prenom;
+            $this->mailClient = $mailClient;
+            $this->mdp = $mdp;
+            $this->adresseClient=$adresseClient;
         }
     }
 
     public static function checkPassword($login,$mot_de_passe_chiffre){
-          $sql = "SELECT * FROM Client WHERE login=:login AND mdp=:mdp";
+          $sql = "SELECT * FROM utilisateur WHERE login=:login AND mdp=:mdp";
           // Préparation de la requête
           $req_prep = Model::$pdo->prepare($sql);
 
