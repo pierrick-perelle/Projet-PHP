@@ -1,21 +1,25 @@
 
 <?php
+
 echo '<div style="display:flex;flex-direction:row;justify-content:center">';
 echo <<< EOT
     <div style="margin-left:1vw;flex-grow:1;flex-shrink:1.1;" class="card blue-grey darken-1">
         <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+            <span class="card-title center">
+            <p> Catégories </p>
+            </span>
+            <p> _______________________________________________</p>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
+        </div>
+        <div class="card-action">
+        </div>
+        <div class="card-action">
         </div>
     </div>
 EOT;
 echo '<div style="flex-grow:4;flex-shrink:1;display:flex;flex-flow:row wrap;justify-content:center">';
-foreach ($tab_result as $result){
+foreach ($tab_result as $result) {
     $stock = htmlspecialchars($result->get("stock"));
     $id = htmlspecialchars($result->get("idProduit"));
     $lib = htmlspecialchars($result->get("libelle"));
@@ -50,20 +54,7 @@ foreach ($tab_result as $result){
                         </p>
                     </div>
                 </div>
-            <!--
-                <form method="get" action="index.php">
-                    <label for="qte">Quantité</label>
-                    <input type=number id="qte" name="quantite"  value="1" min="1" max="$stock"/>
-                    <input type=hidden id="idproduit" name="idproduit" value="$id"/>
-                    <input type=hidden name="action" value="addPanier"/>
-                    <input type=hidden name="controller" value="Produit"/>
-                    <input type=hidden id="idproduit" value="$id"/>
-                    <input type="submit" value="Ajouter au panier"/>
-                </form>
-            -->
 EOT;
 }
 echo '</div>';
 ?>
-</body>
-</html>
