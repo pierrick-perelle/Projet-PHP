@@ -4,6 +4,9 @@ require_once(File::build_path(array("controller","ControllerUtilisateur.php")));
 
 // On recupère l'action passée dans l'URL
 
+//var_dump($_REQUEST);
+//phpinfo();
+
 if (isset($_GET['controller'])){
 $controller=$_GET['controller'];
 }

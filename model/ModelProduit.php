@@ -77,6 +77,7 @@ Class ModelProduit extends Model{
         if(!isset($_SESSION['prix'])){
             $_SESSION['prix'] = 0;
         }
+        else{ $_SESSION['prix'] = 0; }
         foreach($_SESSION['panier'] as $article){
                 if(($product = ModelProduit::select($article[0])) != false){
                     $prixtotal += $product->get("prix") * $article[1];
@@ -87,6 +88,10 @@ Class ModelProduit extends Model{
     
     public static function modifierQuantite($key,$qte){
         $_SESSION['panier'][$key][1] = $qte;
+        ModelProduit::calculPrixPanier();
+    }
+    public static function supprimerProduit($key){ 
+        unset($_SESSION['panier'][$key]);
         ModelProduit::calculPrixPanier();
     }
         

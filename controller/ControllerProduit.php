@@ -70,6 +70,11 @@ Class ControllerProduit{
         $controller='produit';$view='panier';$pagetitle='Liste des produits';
         require(File::build_path(array("view","view.php")));
     }
+    public static function deleteProduct(){
+        ModelProduit::supprimerProduit($_POST['key']);
+        $controller='produit';$view='panier';$pagetitle='Liste des produits';
+        require(File::build_path(array("view","view.php")));
+    }
     
 }
 

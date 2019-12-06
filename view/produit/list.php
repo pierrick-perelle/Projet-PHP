@@ -31,7 +31,7 @@ foreach ($tab_result as $result) {
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">$lib<i class="material-icons right">add_shopping_cart</i></span>
-                        <p><a href="#">En savoir plus</a></p>
+                        <p><a href="index.php?action=read&idprod=$id">En savoir plus</a></p>
                         <p class="right">
                         $prix €    
                         </p>

@@ -1,5 +1,10 @@
 
 <?php
+if(!isset($_SESSION['prix'])){
+        $_SESSION['prix'] = 0;
+    }
+$prix_total = $_SESSION['prix'];
+
 foreach ($_SESSION['panier'] as $key => $article){
     $produit = ModelProduit::select($article[0]);
     $idp_html = htmlspecialchars($produit->get("idProduit"));
@@ -8,7 +13,6 @@ foreach ($_SESSION['panier'] as $key => $article){
     $stock_html = htmlspecialchars($produit->get("stock"));
     $desc_html = htmlspecialchars($produit->get("description"));
     $prix_pile = $prix_html * $article[1];
-    $prix_total = $_SESSION['prix'];
     echo <<< EOT
                   <div class="row">
                     <div class="col s9 m9">
@@ -29,7 +33,12 @@ foreach ($_SESSION['panier'] as $key => $article){
                                 <input type=hidden name="controller" value="Produit"/>
                                 <input type=hidden name="key" value="$key"/>
                                 <input class="btn orange wave-light" type="submit" value="Modifier"/>
-                                </form>
+                          </form>
+                          <form method="post" action="index.php?action=deleteProduct">
+                                <input type="hidden" name="controller" value="Produit"/>
+                                <input type=hidden name="key" value="$key"/>
+                                <input class="btn orange wave-light" type="submit" value="Supprimer"/>
+                          </form>
                                 <p class="center">Prix de la pile : $prix_pile</p>
                         </div>
                       </div>
@@ -40,6 +49,8 @@ EOT;
     echo <<< EOT
                 <hr width="90%"></hr>
                 <h4 class="center">$prix_total €</h4>
+EOT;
+    echo <<< EOT
                 <hr width="15%"></hr>
                 <div class="center">
                 <input class="btn orange wave-light center" type="submit" value="Commander"/>
