@@ -8,7 +8,7 @@ class ModelUtilisateur extends Model {
     private $mailClient;
     private $mdp;
     private $adresseClient;
-    protected static $objet = 'utilisateur';
+    protected static $object = 'utilisateur';
     protected static $primary='login';
     // Getter générique 
     public function get($nom_attribut) {
@@ -53,7 +53,7 @@ class ModelUtilisateur extends Model {
           }
     }
     public static function checkAdmin($login){
-        $table_name = static::$objet;
+        $table_name = static::$object;
         $sql = "SELECT admin from ".$table_name." WHERE login='".$login."'";
         $rep = Model::$pdo->query($sql);
         $admin = $rep->fetchAll();
