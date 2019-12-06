@@ -19,6 +19,7 @@ foreach ($tab_result as $result){
     $stock = htmlspecialchars($result->get("stock"));
     $id = htmlspecialchars($result->get("idProduit"));
     $lib = htmlspecialchars($result->get("libelle"));
+    $prix = htmlspecialchars($result->get("prix"));
     echo <<< EOT
                 <div style="margin-left:2vw;width:20vw;" class="card small">
                     <div class="card-image waves-effect waves-block waves-light">
@@ -27,6 +28,9 @@ foreach ($tab_result as $result){
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">$lib<i class="material-icons right">add_shopping_cart</i></span>
                         <p><a href="#">En savoir plus</a></p>
+                        <p class="right">
+                        $prix €    
+                        </p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">$lib<i class="material-icons right">close</i></span>
@@ -40,6 +44,9 @@ foreach ($tab_result as $result){
                                 <input type=hidden id="idproduit" value="$id"/>
                                 <input onclick="M.toast({html: 'Article ajouté !'})" class="btn waves-effect waves-light orange" type="submit" value="Ajouter au panier"/>
                             </form>
+                            <div>
+                                <h5 class="right">$prix €</h5>
+                            </div>
                         </p>
                     </div>
                 </div>
