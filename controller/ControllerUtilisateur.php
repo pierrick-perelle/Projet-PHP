@@ -25,10 +25,10 @@ protected static $object = 'utilisateur';
     }
     public static function read() {
         //if ($_GET['login']===$_SESSION['login'] or Session::is_admin()==true) {
-            $v = ModelUtilisateur::select($_GET['login']);     //appel au modèle pour gerer la BD
+            $u = ModelUtilisateur::select($_GET['login']);     //appel au modèle pour gerer la BD
             $view='';
             $pagetitle='';
-            if ($v==null) {
+            if ($u==null) {
                 $view='error';
                 $pagetitle='Erreur de lecture';//"redirige" vers la vue
             } else {
@@ -146,7 +146,7 @@ protected static $object = 'utilisateur';
             $u=ModelUtilisateur::select($_POST['login']);
             $view='detail';
             $pagetitle='detail de l\'utilisateurs';
-            require_once (File::build_path(array('view','utilisateur','view.php')));
+            require_once (File::build_path(array('view','view.php')));
         }else{
             echo "login ou mot de passe incorrect ou le compte n'a pas été valider par l'adresse mail";
             require_once (File::build_path(array('connect.php')));

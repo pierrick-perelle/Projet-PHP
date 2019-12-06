@@ -57,7 +57,9 @@ class ModelUtilisateur extends Model {
         $sql = "SELECT admin from ".$table_name." WHERE login='".$login."'";
         $rep = Model::$pdo->query($sql);
         $admin = $rep->fetchAll();
-        if ($admin[0]['admin']==0){
+        if(empty($admin))
+            return false;
+        if ($admin[0]==0){
             return false;
         }else{
             return true;
