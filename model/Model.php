@@ -23,21 +23,21 @@ class Model{
             if (Conf::getDebug()) {
             echo $e->getMessage(); // affiche un message d'erreur
         } else {
-            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>' ;
         }
   die();
 }
 
     }
     public static function selectAll(){
-      $table_name = static::$object;
+      $table_name = static::$objet;
       $class_name = 'Model'.ucfirst($table_name);
       $rep = Model::$pdo->query("SELECT * FROM ".$table_name);
       $tab_result = $rep->fetchAll(PDO::FETCH_CLASS, $class_name);
       return $tab_result;
   }
   public static function select($primary_value) {
-      $table_name = static::$object;
+      $table_name = static::$objet;
       $class_name = 'Model'.$table_name;
       $primary_key = ucfirst(static::$primary);
       $sql = "SELECT * from $table_name WHERE $primary_key=:nom_tag";
@@ -58,7 +58,7 @@ class Model{
    }
    
    public static function delete($primary_value) {
-      $table_name = ucfirst(static::$object);
+      $table_name = ucfirst(static::$objet);
       $primary_key = ucfirst(static::$primary);
       try {
         $sql = "DELETE from $table_name WHERE $primary_key=:nom_tag";
@@ -78,7 +78,7 @@ class Model{
    public static function update($data) {
       $val=""; 
       $primary_key = static::$primary;
-      $table_name = static::$object;
+      $table_name = static::$objet;
       // Création du contenu SET de la requète SQL
       foreach ($data as $cle => $valeur)
           $val=$val.$cle.'=:'.$cle.',';
@@ -102,7 +102,7 @@ class Model{
     public static function save($data) {
       $val=""; 
       $insert="";
-      $table_name = static::$object;
+      $table_name = static::$objet;
       // Création du contenu VALUES de la requète SQL
       foreach ($data as $cle => $valeur){
           $val=$val.$cle.',';

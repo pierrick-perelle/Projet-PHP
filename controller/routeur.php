@@ -41,3 +41,16 @@ if (class_exists($controller_class)){
         }
 }
 else{ControllerProduit::error();}
+
+function myGet($nomvar){
+    if (isset($_GET[$nomvar])) {
+        return $_GET[$nomvar];
+    }else{
+        if (isset($_POST[$nomvar])) {
+            return $_POST[$nomvar];
+        }else{
+            return null;
+        }
+    }
+
+}

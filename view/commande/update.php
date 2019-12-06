@@ -8,20 +8,24 @@
         
     </div>
     <div class="form-row mb-4">
-        <?php echo 'date de commande : '.$dC ?>
-        
+        <?php echo 'date de commande : '.$dC ?>        
     </div>
-    <div class="form-row mb-4">
-        <input class="form-control" type="date" placeholder="" name="dateLivraison" id="dateLivraison_id" value="<?php echo htmlspecialchars($v->get("dateLivraison"))?>" required/>
-        <label for="dateLivraison_id">Date de livraison</label>
-    </div>
+    <?php 
+    $listeProduits=$v->get('listeProduits');
+    foreach($listeProduits as $produit=>$quantite){
+        $prod=ModelProduit::select($produit);
+        echo '<p>'.$prod->get('libelle'). 'x'. $quantite;        
+    }
+    require (File::build_path(array('view','commande',"detail.php"))); 
+    ?>
+    
     <input type="hidden" name="commandeEnCours" id="cC_id" value="<?php echo base64_encode(serialize($v));?>">
-    <input  type="hidden" name="idClient" id="idClient_id" value="<?php echo htmlspecialchars($v->get("idClient"))?>"/>
+    
     
       	<button class="btn btn-info my-4 btn-block orange accent-4" type="submit">Envoyer</button>
       </form>
 </div>
 
     <?php
-    
+    //<input  type="hidden" name="idClient" id="idClient_id" value="<?php echo htmlspecialchars($v->get("idClient"))"/>
     ?>

@@ -11,7 +11,7 @@
         </h5>      
         
         <div class="">      
-            <form class="" style="color: #757575;" method="post" action="?action=<?php echo $effect ?>&controller=<?php echo static::$object ?>">
+            <form class="" style="color: #757575;" method="post" action="?action=<?php echo $effect ?>&controller=<?php echo static::$objet ?>">
 
                 <div class="">
                     <div class="">
@@ -73,12 +73,12 @@
                     </div>
                 </div>';
     		}
-    		?>
-    	    <?php
                 if ($effect=='updated' && Session::is_admin()) {
-                  echo '
-                  <input class="form-control" type="checkbox" id="admin_id" name="admin"  />
-                  <label for="admin_id">Administrateur</label>';
+                echo ' <label for="admin_id" >
+                <input class="form-control" type="checkbox" id="admin_id" name="admin" />
+                 <span>Administrateur</span>
+                    </label>
+                    </p>';
                 }
                 ?>
 
