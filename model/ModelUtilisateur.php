@@ -59,7 +59,7 @@ class ModelUtilisateur extends Model {
         $admin = $rep->fetchAll();
         if(empty($admin))
             return false;
-        if ($admin[0]==0){
+        if ($admin[0]['admin']==0){
             return false;
         }else{
             return true;
