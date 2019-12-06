@@ -98,6 +98,7 @@ protected static $object = 'utilisateur';
     {
         require_once(File::build_path(array('lib', 'Security.php')));
         $chiffrer = Security::chiffrer($_POST['mdp']);
+        //var_dump($chiffrer);
         if (!is_null(myGet('admin'))) {
             $isAdmin = true;
         } else {
@@ -115,12 +116,12 @@ protected static $object = 'utilisateur';
         if (empty($_SESSION['login']) || myGet('login') != $_SESSION['login'] && !Session::is_admin()) {
             header("Location: connect.php");
         }
-        /*if (myGet('password') != myGet('password_confirm')) {
+        if (myGet('password') != myGet('password_confirm')) {
             $verif = false;
         } else {
             ModelUtilisateur::update($data);
             $verif = true;
-        }*/
+        }
         $tab_u = ModelUtilisateur::selectAll();
         $view = 'updated';
         $pagetitle = 'Liste des utilisateurs';

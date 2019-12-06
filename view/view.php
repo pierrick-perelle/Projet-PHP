@@ -23,7 +23,6 @@
                     <li><a class="grey-text text-lighten-3" href="index.php?action=readAll"><b>Les Produits</b></a></li>
                 <?php
                         if(ModelUtilisateur::checkAdmin($_SESSION['login'])){
-                           echo 'JE SUIS ADMIN';
                            echo ' <li><a class="grey-text text-lighten-3" href="index.php?action=readAll&controller=utilisateur"><b>Liste des Utilisateurs</b></a></li>';
                         }
                 ?>
