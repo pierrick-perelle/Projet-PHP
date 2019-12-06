@@ -55,23 +55,21 @@
                     </div>
                 </div>
     		<?php
-    		if(!Session::is_admin()){
-                echo '<div class="form-row">
-                    <div class="col">
-                        <!-- PSW -->
-                        <div class="md-form">
-    			<input class="form-control" type="password" name="mdp" id="mdp1_id" value="" >
-                            <label for="mdp_id">Mot de passe</label>
+    		if($_SESSION["login"]==$v->get("login")){
+
+                echo '
+                    <div class="row">
+                        <div class="input-field col s12">
+                           <input id="password" type="password" class="validate" name="mdp" id="mdp_id" value="">
+                            <label for="password mdp_id">Password</label>
                         </div>
                     </div>
-                    <div class="col">
-                        <!-- PSW BIS -->
-                        <div class="md-form">
-    			<input class="form-control" type="password" name="mdp2" id="mdp2_id" value="" >
-                            <label for="mdpbis_id">Retapez votre mot de passe</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate" name="mdp2" id="mdp2_id" value="">
+                            <label for="password mdp2_id">Password</label>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
     		}
                 if ($effect=='updated' && Session::is_admin()) {
                 echo ' <label for="admin_id" >
