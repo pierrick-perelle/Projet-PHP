@@ -11,7 +11,7 @@
         </h5>      
         
         <div class="">      
-            <form class="" style="color: #757575;" method="post" action="?action=<?php echo $effect ?>&controller=<?php echo static::$objet ?>">
+            <form class="" style="color: #757575;" method="post" action="?action=<?php echo $effect ?>&controller=<?php echo static::$object ?>">
 
                 <div class="">
                     <div class="">

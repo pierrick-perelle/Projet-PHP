@@ -11,7 +11,7 @@ class ModelCommandeClient extends Model{
     private $listeProduits=array();
     private $dateCommande;
     private $prixTotal=0;
-    protected static $objet = 'Commande';
+    protected static $object = 'Commande';
     protected static $primary='idCommande';
     
     
