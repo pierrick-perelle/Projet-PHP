@@ -17,7 +17,7 @@ protected static $object = 'utilisateur';
             header('Location: ./');
             exit();  
         }*/
-        $tab_v = ModelUtilisateur::selectAll();     //appel au modèle pour gerer la BD
+        $tab_u = ModelUtilisateur::selectAll();     //appel au modèle pour gerer la BD
         $view='list';
         $pagetitle='Liste des Utilisateurs';
         require (File::build_path(array("view","view.php")));  //"redirige" vers la vue
@@ -124,7 +124,7 @@ protected static $object = 'utilisateur';
         $tab_u = ModelUtilisateur::selectAll();
         $view = 'updated';
         $pagetitle = 'Liste des utilisateurs';
-        require_once(File::build_path(array('view', 'utilisateur', 'view.php')));
+        require_once(File::build_path(array('view','view.php')));
     }
 
     public static function connect() {
