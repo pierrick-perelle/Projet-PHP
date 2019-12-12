@@ -29,7 +29,7 @@ foreach ($_SESSION['panier'] as $key => $article){
                         <div class="card-content white-text">
                           <form method="post" action="index.php?action=modify">
                                 <label for="qte">Modifer la quantité</label>
-                                <input type=number id="qte" name="qte" min="1" max="$stock_html"/>
+                                <input type=number id="qte" name="qte" min="1" value="$article[1]" max="$stock_html"/>
                                 <input type=hidden name="controller" value="Produit"/>
                                 <input type=hidden name="key" value="$key"/>
                                 <input class="btn orange wave-light" type="submit" value="Modifier"/>

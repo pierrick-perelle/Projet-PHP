@@ -9,6 +9,7 @@ Class ModelProduit extends Model{
     private $prix;
     private $stock;
     private $description;
+    private $categorie;
     
     // Getter générique 
     public function get($nom_attribut) {
@@ -22,41 +23,17 @@ Class ModelProduit extends Model{
             $this->$nom_attribut = $valeur;
         return false;
     }
-    public function __construct($id = NULL, $lib = NULL, $pp = NULL, $s = NULL,$desc = NULL) {
-        if (!is_null($id) && !is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc)) {
+    public function __construct($id = NULL, $lib = NULL, $pp = NULL, $s = NULL,$desc = NULL, $cat = NULL) {
+        if (!is_null($id) && !is_null($lib) && !is_null($pp) && !is_null($s) && !is_null($desc) && !is_null($cat)) {
             $this->idProduit = $id;
             $this->libelle = $lib;
             $this->prix = $pp;
             $this->stock = $s;
             $this->description = $desc;
+            $this->categorie = $cat;
         }
     }
-    public static function getAllProduits(){
-        $rep = Model::$pdo->query("SELECT * FROM produit");
-        $tab_produit = $rep->fetchAll(PDO::FETCH_CLASS, 'ModelProduit');
-        return $tab_produit;
-    }
-    
-    public static function getProduitById($idp) {
-    try{
-        $sql = "SELECT * FROM produit WHERE idproduit=:idp_sql";
-        $req_prep = Model::$pdo->prepare($sql);
-        $values = array(
-            "idp_sql" => $idp,
-        );	 
-        $req_prep->execute($values);
-
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
-        $tab_produit = $req_prep->fetchAll();
-    }
-    catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-    if (empty($tab_produit))
-        return false;
-    return $tab_produit[0];
-  }
-  public static function ajoutProduitPanier($idp,$qte){
+    public static function ajoutProduitPanier($idp,$qte){
         $estadd = 0;
         if(isset($_SESSION['panier'][0])){
             foreach ($_SESSION['panier'] as $key => $value){
@@ -93,6 +70,20 @@ Class ModelProduit extends Model{
     public static function supprimerProduit($key){ 
         unset($_SESSION['panier'][$key]);
         ModelProduit::calculPrixPanier();
+    }
+    public static function getListCat(){
+        try{
+            $sql = "SELECT DISTINCT categorie FROM produit";
+            $req_prep = Model::$pdo->prepare($sql);
+            $req_prep->setFetchMode(PDO::FETCH_NUM); //marche pas
+            $result = $req_prep->fetchAll();
+            print_r($result);
+            return $result;
+        }catch(PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            }
+        }
     }
         
 }

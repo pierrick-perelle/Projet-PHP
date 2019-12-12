@@ -1,6 +1,6 @@
 
 <?php
-
+$listCat = ModelProduit::getListCat();
 echo '<div style="display:flex;flex-direction:row;justify-content:center">';
 echo <<< EOT
     <div style="margin-left:1vw;flex-grow:1;flex-shrink:1.1;" class="card blue-grey darken-1">
@@ -9,15 +9,15 @@ echo <<< EOT
             <p> Catégories </p>
             </span>
             <p> _______________________________________________</p>
-        </div>
-        <div class="card-action">
-        </div>
-        <div class="card-action">
-        </div>
-        <div class="card-action">
-        </div>
-    </div>
 EOT;
+foreach($listCat as $cat){
+    echo <<< EOT
+        <div class="card-action">
+        $cat
+        </div>
+EOT;
+}
+        echo '</div>';
 echo '<div style="flex-grow:4;flex-shrink:1;display:flex;flex-flow:row wrap;justify-content:center">';
 foreach ($tab_result as $result) {
     $stock = htmlspecialchars($result->get("stock"));

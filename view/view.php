@@ -22,13 +22,15 @@
                 ?>
                     <li><a class="grey-text text-lighten-3" href="index.php?action=readAll"><b>Les Produits</b></a></li>
                 <?php
-                        if(ModelUtilisateur::checkAdmin($_SESSION['login'])){
-                           echo ' <li><a class="grey-text text-lighten-3" href="index.php?action=readAll&controller=utilisateur"><b>Liste des Utilisateurs</b></a></li>';
+                        if(isset($_SESSION['login'])){
+                            if(ModelUtilisateur::checkAdmin($_SESSION['login'])){
+                                echo ' <li><a class="grey-text text-lighten-3" href="index.php?action=readAll&controller=utilisateur"><b>Liste des Utilisateurs</b></a></li>';
+                            }
                         }
                 ?>
                 </ul>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="grey-text text-lighten-3" href="index.php?action=readPanier&controller=produit"><b>Mon Panier</b></a></li>
+                <ul class="right hide-on-med-and-down">
+                    <li ><a class="grey-text text-lighten-3" href="index.php?action=readPanier&controller=produit"><b>Mon Panier</b></a></li>
                 </ul>
             </div>
         </nav>
