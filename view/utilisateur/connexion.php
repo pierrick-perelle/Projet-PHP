@@ -14,7 +14,7 @@
   <div class="">
     <form method="post" class="" style="color: #757575;" action="?controller=utilisateur&action=connected">
       <div class="">
-        <input class="" type="text" placeholder="" name="login" id="materialLoginFormEmail" value="<?php if(isset($login)){ echo $login; } ?>" required />
+        <input class="" type="text" placeholder="" name="login" id="materialLoginFormEmail" value="<?php if(isset($_POST['login'])){ echo $_POST['login']; } ?>" required />
         <label for="materialLoginFormEmail">Login</label>
       </div>
       <div class="">

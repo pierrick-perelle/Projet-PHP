@@ -10,7 +10,7 @@
         <div class="navbar-fixed">
         <nav class="nav-extended">
             <div class="grey darken-4 nav-wrapper">
-                <a href="#!" class="grey-text text-lighten-3 brand-logo center"><i class="material-icons">cake</i>Cook'ilo</a>
+                <a href="index.php?action=readAll" class="grey-text text-lighten-3 brand-logo center"><i class="material-icons">cake</i>Cook'ilo</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <?php
                     if(empty($_SESSION['login'])){

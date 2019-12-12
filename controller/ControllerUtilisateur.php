@@ -149,8 +149,15 @@ protected static $object = 'utilisateur';
             $pagetitle='detail de l\'utilisateurs';
             require_once (File::build_path(array('view','view.php')));
         }else{
-            echo "login ou mot de passe incorrect ou le compte n'a pas été valider par l'adresse mail";
-            require_once (File::build_path(array('connect.php')));
+            //echo "login ou mot de passe incorrect ou le compte n'a pas été valider par l'adresse mail";
+            $view='connexion';
+            $pagetitle='detail de l\'utilisateurs';
+            require_once (File::build_path(array('view','view.php')));
+            echo '<script type="text/javascript">
+            alert("Vous avez été déconnecté");
+            //document.location.href = "index.php";
+        </script>';
+
         }
     }
     public static function deconnect(){
