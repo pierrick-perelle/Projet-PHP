@@ -1,6 +1,6 @@
 <?php
 
-require_once file::build_path(array("model", "Model.php"));
+
 
 Class ModelProduit extends Model {
 
@@ -78,10 +78,15 @@ Class ModelProduit extends Model {
         ModelProduit::calculPrixPanier();
     }
 
-    public static function supprimerProduit($key) {
+    public static function supprimerProduit($key){ 
         unset($_SESSION['panier'][$key]);
         ModelProduit::calculPrixPanier();
     }
+    public static function viderPanier(){
+        $_SESSION['panier']=array();
+        ModelProduit::calculPrixPanier();
+    }
+        
 
     public static function getListCat() {
         try {

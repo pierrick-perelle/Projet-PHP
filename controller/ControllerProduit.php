@@ -106,6 +106,17 @@ Class ControllerProduit {
         }
     }
 
+    public static function viderPanier(){
+        $view='panier';
+        ModelProduit::viderPanier();
+        require(File::build_path(array("view","view.php")));
+    }
+    public static function error(){
+        $view='error';
+        $pagetitle='401';
+        require(File::build_path(array("view","view.php")));
+    }
+    
 }
 
 ?>

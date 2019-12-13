@@ -52,15 +52,21 @@ foreach ($_SESSION['panier'] as $key => $article) {
                   </div>
 EOT;
 }
-echo <<< EOT
+    echo <<< EOT
                 <hr width="90%"></hr>
                 <h4 class="center">$prix_total €</h4>
 EOT;
-echo <<< EOT
+    if ($_SESSION['prix']!=0) {
+        echo <<< EOT
                 <hr width="15%"></hr>
                 <div class="center">
-                <input class="btn orange wave-light center" type="submit" value="Commander"/>
+                <a class="btn orange wave-light center" href="?action=checkLogged&controller=Commande" >Commander</a>
+                </div>';    
+                <hr width="15%"></hr>
+                <div class="center">
+                <a class="btn orange wave-light center" href="?action=viderPanier&controller=Produit"/>Vider le panier</a>
                 </div>
 EOT;
+    }
 ?>
 

@@ -2,7 +2,8 @@
     La commande a bien été enregistrée !
 </div>
 <div>
-    <?php
-    require (File::build_path(array("view", "commande", "list.php")));
+	<?php
+
+    require (File::build_path(array("view","commande", "detail.php")));
     ?>
 </div>

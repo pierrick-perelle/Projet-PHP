@@ -1,7 +1,8 @@
 <?php
 
-require_once(File::build_path(array("controller", "ControllerProduit.php")));
-require_once(File::build_path(array("controller", "ControllerUtilisateur.php")));
+require_once(File::build_path(array("controller","ControllerProduit.php")));
+require_once(File::build_path(array("controller","ControllerUtilisateur.php")));
+require_once(File::build_path(array("controller","ControllerCommande.php")));
 
 // On recupère l'action passée dans l'URL
 //var_dump($_REQUEST);
@@ -55,3 +56,4 @@ function myGet($nomvar) {
         }
     }
 }
+

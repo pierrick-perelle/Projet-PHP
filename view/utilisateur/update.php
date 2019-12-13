@@ -55,10 +55,11 @@
                         </div>
                     </div>
                 </div>
-                <?php
-                if ($_SESSION["login"] == $v->get("login")) {
 
-                    echo '
+    		<?php
+    		//if (isset($_SESSION['login'])){if($_SESSION["login"]==$v->get("login")){
+
+                echo '
                     <div class="row">
                         <div class="input-field col s12">
                            <input id="password" type="password" class="validate" name="mdp" id="mdp_id" value="">
@@ -71,9 +72,10 @@
                             <label for="password mdp2_id">Password</label>
                         </div>
                     </div>';
-                }
+
                 if ($effect == 'updated' && Session::is_admin()) {
                     echo ' <label for="admin_id" >
+
                 <input class="form-control" type="checkbox" id="admin_id" name="admin" />
                  <span>Administrateur</span>
                     </label>
