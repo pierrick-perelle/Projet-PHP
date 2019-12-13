@@ -1,58 +1,65 @@
 <?php
 require_once File::build_path(array("model", "Model.php"));
 require_once File::build_path(array("model", "ModelProduit.php"));
-require_once File::build_path(array("model", "ModelListecommande.php"));
+require_once File::build_path(array("model", "ModelListeProduitsCommande.php"));
 
-class ModelCommandeClient extends Model{
+class ModelCommande extends Model{
     
-    //private $etatCommande (passée/payée/livrée)
-    private $idCommandeClient;
+    private $idCommande;
     private $idClient;
-    private $listeProduits=array();
     private $dateCommande;
+    private $dateLivraison;
     private $prixTotal=0;
-    protected static $objet = 'Commande';
+    private $listeProduits=array();
+    private $etatCommande; //passée 0 / en cours de preparation 1 / envoyée 2 / annulée 3
+    protected static $object = 'commande';
     protected static $primary='idCommande';
     
     
-    public function __construct($idC = NULL, $dC = NULL, $idCC = NULL, $lP=NULL){
+    public function __construct($idC = NULL, $dC = NULL, $idCC = NULL, $dL=NULL, $lP=NULL, $eC=NULL){
         if (!is_null($idC) && !is_null($dC)){
             $idCommande=$idCC;
             $idClient = $idC;
             $dateCommande = $dC;
+            $dateLivraison = $dL;
             $listeProduits=$lP;
+            $etatCommande=$eC;
         }
         //si c'est une nouvelle commande
-        if(is_null($idCommande)){ self::toList();}
-        else {        
-            ModelListeProduitsCommande::select($idCommande);
+        if(is_null($this->idCommande)){
+            self::toList();
+            $this->etatCommande=0;
+        }
+        //sinon on recupère la liste de produits depuisla bd
+        else {
+            $this->listeProduits=ModelListeProduitsCommande::selectMore($this->idCommande,"idCommande");
         }
     }
     
     public function toList(){
-        //$pT=0;
     $contenuPanier=$_SESSION['panier'];
         //creation de la liste de produits finale
- 	foreach ($contenuPanier as $produit => $quantite){
-            $quantite=intval($quantite);
+ 	foreach ($contenuPanier as $key => $couple){
+ 	        $idProduit=intval($couple[0]);
+ 	        $quantite=intval($couple[1]);
             //recuperation du produit afin d'accéder à ses attributs
-            $produitObj=ModelProduit::select($produit);
+            $produitObj=ModelProduit::select($idProduit);
             // si le produit n'est plus disponible en quantite suffisante
-            if(($produitObj->get('quantite'))<($quantite)){
-                unset($contenuPanier[$produit]);
+            if(($produitObj->get('stock'))<($quantite)){
+                unset($contenuPanier[$idProduit]);
+                unset($_SESSION['panier'][$key]);
             }
             else {
-                $this->listeProduits[$produit] = $quantite;
-                //$pT=$pT+$quantite*($produitObj->get('prixProduit'));            
+                $this->listeProduits[$idProduit] = $quantite;
             }
  	}
- 	//$this->prixTotal=$pT;
- 	$this->prixTotal=$_SESSION['prix'];        
- 	$_SESSION['panier']=$contenuPanier;
+ 	$this->prixTotal=$_SESSION['prix'];
     }
     
     public function saveList(){
-      $values[':idCC']= ModelCommande::$pdo->lastInsertId();
+      $idCommande=ModelCommande::$pdo->lastInsertId();
+      $this->set('idCommande',$idCommande);
+      $values[':idCC']= $idCommande;
       $donnees="";
       $numeroProd=0;
       // Création de chaque combinaison produit quantité à inserer dans la listeProdClient
@@ -78,6 +85,7 @@ class ModelCommandeClient extends Model{
             return false;
       }   
     }
+
     // Getter générique (pas expliqué en TD)
     public function get($nom_attribut) {
         if (property_exists($this, $nom_attribut))
@@ -90,5 +98,27 @@ class ModelCommandeClient extends Model{
         if (property_exists($this, $nom_attribut))
             $this->$nom_attribut = $valeur;
         return false;
+    }
+    
+    public function getEtat(){
+        $etat=$this->etatCommande;
+        $result="";
+        switch ($etat){
+            case 0 :
+                $result="Passée";
+                break;
+            case 1 :
+                $result="En cours de traitement";
+                break;
+            case 2 :
+                $result="Envoyée";
+                break;
+            case 3 :
+                $result="Annulée";
+                break;
+            
+            default : $result="Erreur dans la commande";
+        }
+        return $result;       
     }
 }

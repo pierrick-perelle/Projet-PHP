@@ -3,7 +3,8 @@
 </div>
 <div>
 	<?php
-    require (File::build_path(array("view","commande", "list.php")));
+
+    require (File::build_path(array("view","commande", "detail.php")));
                 
     ?>
 </div>

@@ -12,7 +12,7 @@
     <strong>Connectez-vous</strong>
   </h5>
   <div class="">
-    <form method="post" class="" style="color: #757575;" action="?controller=utilisateur&action=connected">
+    <form method="post" class="" style="color: #757575;" action="?controller=utilisateur&action=connected<?php if($effect=='redirect'){echo '&effect=redirect';} ?>">
       <div class="">
         <input class="" type="text" placeholder="" name="login" id="materialLoginFormEmail" value="<?php if(isset($login)){ echo $login; } ?>" required />
         <label for="materialLoginFormEmail">Login</label>

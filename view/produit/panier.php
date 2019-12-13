@@ -1,5 +1,10 @@
 
 <?php
+if(!isset($_SESSION['prix'])){
+        $_SESSION['prix'] = 0;
+    }
+$prix_total = $_SESSION['prix'];
+
 foreach ($_SESSION['panier'] as $key => $article){
     $produit = ModelProduit::select($article[0]);
     $idp_html = htmlspecialchars($produit->get("idProduit"));
@@ -7,32 +12,56 @@ foreach ($_SESSION['panier'] as $key => $article){
     $prix_html = htmlspecialchars($produit->get("prix"));
     $stock_html = htmlspecialchars($produit->get("stock"));
     $desc_html = htmlspecialchars($produit->get("description"));
-    $prix_pile =  $prix_html * $article[1];
+    $prix_pile = $prix_html * $article[1];
     echo <<< EOT
-                <div>
-                <fieldset>
-                    <div style="display:flex;wrap:nowrap;flex-direction:row;height:10vh;">
-                        <div style="width:70vw;">
-                            <p><b>$libelle_html</b></br></br>
-                            $desc_html </p>
+                  <div class="row">
+                    <div class="col s9 m9">
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">$libelle_html</span><span class="right">Prix unitaire : $prix_html €
+                                Quantité : $article[1]</span>
+                          <p>$desc_html</p>
                         </div>
-                        <div style="width:30vw;">
-                            <p> Prix unitaire : $prix_html
-                                Quantité : $article[1]
-                                <form method="post" action="index.php?action=modify">
+                      </div>
+                    </div>
+                    <div class="col s3 m3">
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <form method="post" action="index.php?action=modify">
                                 <label for="qte">Modifer la quantité</label>
                                 <input type=number id="qte" name="qte" min="1" max="$stock_html"/>
                                 <input type=hidden name="controller" value="Produit"/>
                                 <input type=hidden name="key" value="$key"/>
-                                <input type="submit" value="Modifier"/>
-                                </form>
-                                Prix de la pile : $prix_pile
+                                <input class="btn orange wave-light" type="submit" value="Modifier"/>
+                          </form>
+                          <form method="post" action="index.php?action=deleteProduct">
+                                <input type="hidden" name="controller" value="Produit"/>
+                                <input type=hidden name="key" value="$key"/>
+                                <input class="btn orange wave-light" type="submit" value="Supprimer"/>
+                          </form>
+                                <p class="center">Prix de la pile : $prix_pile</p>
                         </div>
+                      </div>
                     </div>
-                    
-                </fieldset>
-                </div>
+                  </div>
 EOT;
 }
+    echo <<< EOT
+                <hr width="90%"></hr>
+                <h4 class="center">$prix_total €</h4>
+EOT;
+    if ($_SESSION['prix']!=0) {
+        echo <<< EOT
+                <hr width="15%"></hr>
+                <div class="center">
+                <a class="btn orange wave-light center" href="?action=checkLogged&controller=Commande" >Commander</a>
+                </div>';    
+                <hr width="15%"></hr>
+                <div class="center">
+                <a class="btn orange wave-light center" href="?action=viderPanier&controller=Produit"/>Vider le panier</a>
+                </div>
+EOT;
+    }
+
 ?>
 

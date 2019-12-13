@@ -2,7 +2,7 @@
 require_once file::build_path(array("model","Model.php"));
 
 Class ModelProduit extends Model{
-    static protected $objet = 'produit';
+    static protected $object = 'produit';
     static protected $primary = 'idProduit';
     private $idProduit;
     private $libelle;
@@ -77,6 +77,7 @@ Class ModelProduit extends Model{
         if(!isset($_SESSION['prix'])){
             $_SESSION['prix'] = 0;
         }
+        else{ $_SESSION['prix'] = 0; }
         foreach($_SESSION['panier'] as $article){
                 if(($product = ModelProduit::select($article[0])) != false){
                     $prixtotal += $product->get("prix") * $article[1];
@@ -87,6 +88,14 @@ Class ModelProduit extends Model{
     
     public static function modifierQuantite($key,$qte){
         $_SESSION['panier'][$key][1] = $qte;
+        ModelProduit::calculPrixPanier();
+    }
+    public static function supprimerProduit($key){ 
+        unset($_SESSION['panier'][$key]);
+        ModelProduit::calculPrixPanier();
+    }
+    public static function viderPanier(){
+        $_SESSION['panier']=array();
         ModelProduit::calculPrixPanier();
     }
         

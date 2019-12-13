@@ -57,7 +57,7 @@ Class ControllerProduit{
         }
     }
     public static function addPanier(){
-        ModelProduit::ajoutProduitPanier($_GET['idproduit'],$_GET['quantite']);
+        ModelProduit::ajoutProduitPanier($_POST['idproduit'],$_POST['quantite']);
         self::readAll();
     }
     
@@ -68,6 +68,21 @@ Class ControllerProduit{
     public static function modify(){
         ModelProduit::modifierQuantite($_POST['key'],$_POST['qte']);
         $controller='produit';$view='panier';$pagetitle='Liste des produits';
+        require(File::build_path(array("view","view.php")));
+    }
+    public static function deleteProduct(){
+        ModelProduit::supprimerProduit($_POST['key']);
+        $controller='produit';$view='panier';$pagetitle='Liste des produits';
+        require(File::build_path(array("view","view.php")));
+    }
+    public static function viderPanier(){
+        $view='panier';
+        ModelProduit::viderPanier();
+        require(File::build_path(array("view","view.php")));
+    }
+    public static function error(){
+        $view='error';
+        $pagetitle='401';
         require(File::build_path(array("view","view.php")));
     }
     

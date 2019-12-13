@@ -1,8 +1,12 @@
 <?php
 require_once(File::build_path(array("controller","ControllerProduit.php")));
 require_once(File::build_path(array("controller","ControllerUtilisateur.php")));
+require_once(File::build_path(array("controller","ControllerCommande.php")));
 
 // On recupère l'action passée dans l'URL
+
+//var_dump($_REQUEST);
+//phpinfo();
 
 if (isset($_GET['controller'])){
 $controller=$_GET['controller'];
@@ -41,3 +45,16 @@ if (class_exists($controller_class)){
         }
 }
 else{ControllerProduit::error();}
+
+function myGet($nomvar){
+    if (isset($_GET[$nomvar])) {
+        return $_GET[$nomvar];
+    }else{
+        if (isset($_POST[$nomvar])) {
+            return $_POST[$nomvar];
+        }else{
+            return null;
+        }
+    }
+
+}
