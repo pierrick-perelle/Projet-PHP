@@ -52,33 +52,29 @@ if($admin){
         </thead>
         <!-- /.Table head -->
         <tbody>            
-		<?php
-                    
-                    if (empty($tab_Commande)){
-                        echo 'Aucune commande enregistrée';
+            <?php
+            if (empty($tab_Commande)) {
+                echo 'Aucune commande enregistrée';
+            } else {
+                foreach ($tab_Commande as $Commande) {
+                    if ($admin) {
+                        echo '<tr> <th> ' . $Commande->get("idClient") . ' </th> ';
+                        echo '<td>' . htmlspecialchars($Commande->get("idCommande")) . ' </td> ';
+                    } else {
+                        echo '<tr> <th> ' . htmlspecialchars($Commande->get("idCommande")) . ' </th> ';
                     }
-                    else{
-                   foreach ($tab_Commande as $Commande){
-                    if ($admin){                   
-                        echo '<tr> <th> '.$Commande->get("idClient").' </th> ';
-                        echo '<td>'.htmlspecialchars($Commande->get("idCommande")).' </td> ';
+                    echo '<td> ' . $Commande->getEtat() . ' </td> ';
+                    echo '<td> ' . htmlspecialchars($Commande->get("dateCommande")) . '</td> ';
+                    echo '<td> ' . htmlspecialchars($Commande->get("prixTotal")) . '</td> ';
+                    echo '<td><a href="?action=read&idCommande=' . rawurlencode($Commande->get("idCommande")) . '&controller=Commande"><i class="material-icons">search</i></a>';
+                    if ($Commande->get("etatCommande") < 2) {
+                        //if ($admin){echo '<a class="material-icons send" href="?action=send&idCommande='.rawurlencode($Commande->get("idCommande")).'&controller=Commande">send</a>';}
+                        //echo '<a class="material-icons annuler" data-toggle="modal" data-target="#confirmation" data-id='.rawurlencode($Commande->get("idCommande")).'>cancel</a></td></tr>';
+                        //}
                     }
-                    else{
-                        echo '<tr> <th> '.htmlspecialchars($Commande->get("idCommande")).' </th> ';
-                    }
-                    echo '<td> '.$Commande->getEtat().' </td> ';
-                    echo '<td> '.htmlspecialchars($Commande->get("dateCommande")).'</td> ';
-                    echo '<td> '.htmlspecialchars($Commande->get("prixTotal")).'</td> ';
-                    echo '<td><a href="?action=read&idCommande='.rawurlencode($Commande->get("idCommande")).'&controller=Commande"><i class="material-icons">search</i></a>';
-                    if ($Commande->get("etatCommande")<2){
-                        if ($admin){echo '<a class="material-icons send" href="?action=send&idCommande='.rawurlencode($Commande->get("idCommande")).'&controller=Commande">send</a>';}
-                        echo '<a class="material-icons annuler" data-toggle="modal" data-target="#confirmation" data-id='.rawurlencode($Commande->get("idCommande")).'>cancel</a></td></tr>';
-                        
-                            }
-                            
-                        } 
-                    }
-        ?>
+                }
+            }
+                    ?>
          </tbody>
 <!-- prompt de confirmation d annulation de commande -->         
   <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
@@ -108,4 +104,4 @@ if($admin){
 <div class="text-center py-3" style="padding-top:40px;">
       <a class="waves-effect waves-light btn orange accent-4 white-text text-lighten-4 effet" href="?action=readAll&controller=panier">Acceder au panier</a>
 </div>
-
+    

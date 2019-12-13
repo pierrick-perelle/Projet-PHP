@@ -160,7 +160,7 @@ class ControllerUtilisateur {
             $pagetitle='detail de l\'utilisateurs';
             if (isset($effect)){
             if ($effect=='redirect'){
-                ControllerCommandeClient::create();
+                ControllerCommande::create();
                 }
             }
 

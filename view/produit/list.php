@@ -72,8 +72,8 @@ foreach ($tab_result as $result) {
                         <p>
                             <form method="post" action="index.php">
                                 <label for="qte">Quantité</label>
-                                <input type=number id="qte" name="quantite"  value="1" min="1" max="$stock"/>
-                                <input type=hidden id="idproduit" name="idproduit" value="$id"/>
+                                <input type=number name="quantite"  value="1" min="1" max="$stock"/>
+                                <input type=hidden name="idproduit" value="$id"/>
                                 <input type=hidden name="action" value="addPanier"/>
                                 <input type=hidden name="controller" value="Produit"/>
 EOT;
@@ -83,8 +83,7 @@ EOT;
 EOT;
     }
     echo <<< EOT
-                                <input type=hidden name="filtre" value="$p_filtre"/>
-                                <input type=hidden id="idproduit" value="$id"/>
+                                <input type=hidden nam="idproduit value="$id"/>
                                 <button onclick="M.toast({html: 'Article ajouté !'})" class="btn waves-effect waves-light orange" type="submit">Ajouter au panier</button>
                             </form>
                             <div>

@@ -84,7 +84,7 @@
                 ?>
 
                 <!-- Sign up button -->
-                <button class="orange waves-effect waves-light btn" type="submit">Envoyer</button>';
+                <button class="orange waves-effect waves-light btn" type="submit">Envoyer</button>'
 
                 <hr>
 
