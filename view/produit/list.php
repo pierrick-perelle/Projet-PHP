@@ -45,7 +45,10 @@ if(isset($filtre)){
     $tab_result = $filtre;
 }
 if(isset($_REQUEST['filtre']) && !empty($_REQUEST['filtre'])){
-    $p_filtre = htmlspecialchars($_POST['filtre']);
+    $p_filtre = htmlspecialchars($_REQUEST['filtre']);
+}
+else if(isset($_COOKIE['filtre']) && !empty($_COOKIE['filtre'])){
+    $p_filtre = htmlspecialchars($_COOKIE['filtre']);
 }
 foreach ($tab_result as $result) {
     $stock = htmlspecialchars($result->get("stock"));
